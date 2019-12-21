@@ -76,39 +76,27 @@ int substring(char* str1, char* str2)
 
 int similar(char* s, char* t, int n)
 {
-	int lenS = Length(s);
-	int lenT = Length(t);
-	int n1 = 0;;
-	int counter = 0;
-	int i = 0, j = 0;
-	while ( j < lenS)
-	{
-		if (i < lenT)
-		{
-			if (t[i] == s[j])
-			{
-				counter++;
-				i++;
-			}
-			else
-			{
-				n1 = n1 + 1;
+	int sL = strlen(s);
+	int tL = strlen(t);
+	if (sL - tL > n || sL - tL < 0) {
+		return 0;
+	}
+	int extraChar = 0;
+	while (*t != 0) {
+		if (*s != *t) {
+			s++;
+			extraChar++;
+			if (extraChar > n) {
+				return 0;
 			}
 		}
 		else
 		{
-			n1 = n1 + 1;
+			s++;
+			t++;
 		}
-
-		j++;
 	}
-
-	if (counter == lenT&&n1==n)
-	{
-		return 1;
-	}
-
-		return 0;
+	return 1;
 
 }
 
